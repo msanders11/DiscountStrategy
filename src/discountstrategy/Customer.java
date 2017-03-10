@@ -9,8 +9,10 @@ package discountstrategy;
  *
  * @author Mike
  */
-public interface DiscountStrategy {
-    
-    public abstract double getDiscount(Double retailPrice, int qty);
+class Customer {
+
+    Customer(String customerId, DataAccessStrategy db) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

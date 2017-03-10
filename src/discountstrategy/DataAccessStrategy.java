@@ -9,8 +9,10 @@ package discountstrategy;
  *
  * @author Mike
  */
-public interface DiscountStrategy {
+public interface DataAccessStrategy {
+
+    public abstract Customer findCustomer(String customerId);
     
-    public abstract double getDiscount(Double retailPrice, int qty);
+    public abstract Product findProduct(String productId);
     
 }
