@@ -17,11 +17,11 @@ public class PosTerminal {
     }
 
     public final void addItemtoSale(String productId, int qty) {
-        receipt.addItemToSale(productId, qty);
+        receipt.addLineItem(productId, qty);
     }
 
     public final void endSale() {
-        
+        receipt.outPutReceipt();
     }
     
 }

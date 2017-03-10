@@ -11,9 +11,40 @@ package discountstrategy;
  */
 public class LineItem {
     private Product product;
+    private int qty;
 
-    LineItem(String productId, int qty, DataAccessStrategy db) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public LineItem(String productId, int qty, DataAccessStrategy db) {
+        product = findProduct(productId, db);
+        setQty(qty);
+    }
+
+    public final Product findProduct(String productId, DataAccessStrategy db){
+        return db.findProduct(productId);
+    }
+    
+    public final void addDataToLineItem(){
+        String data = "";
+        
+    }
+    
+    public final void addLineItem(){
+        
+    }
+
+    public final Product getProduct() {
+        return product;
+    }
+
+    public final void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public final int getQty() {
+        return qty;
+    }
+
+    public final void setQty(int qty) {
+        this.qty = qty;
     }
     
     
