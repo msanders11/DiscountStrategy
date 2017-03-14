@@ -13,7 +13,7 @@ class Customer {
     private String customerId;
     private String name;
 
-    Customer(String customerId, DataAccessStrategy db) {
+    public Customer(String customerId, DataAccessStrategy db) {
         setCustomerId(customerId);
     }
 

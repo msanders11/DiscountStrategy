@@ -19,7 +19,7 @@ public class LineItem {
         setQty(qty);
     }
 
-    public final Product findProduct(String productId, DataAccessStrategy db){
+    private Product findProduct(String productId, DataAccessStrategy db){
         return db.findProduct(productId);
     }
     
@@ -29,8 +29,8 @@ public class LineItem {
         data += product.getName() + "   " + "\n";
         data += product.getRetailPrice() + "   " + "\n";
         data += qty + "   " + "\n";
-        data += (product.getRetailPrice() * qty) + "   " + "\n";
-        data += product.getDiscount();
+        data += getSubtotal()+ "   " + "\n";
+        data += product.getDiscountStrategy().getDiscount(product.getRetailPrice(), qty);
         return data;
     }
 
@@ -48,6 +48,10 @@ public class LineItem {
 
     public final void setQty(int qty) {
         this.qty = qty;
+    }
+    
+    public final double getSubtotal(){
+        return product.getRetailPrice() * qty;
     }
     
     
