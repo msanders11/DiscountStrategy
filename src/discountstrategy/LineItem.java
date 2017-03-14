@@ -12,6 +12,7 @@ package discountstrategy;
 public class LineItem {
     private Product product;
     private int qty;
+    
 
     public LineItem(String productId, int qty, DataAccessStrategy db) {
         product = findProduct(productId, db);
@@ -22,13 +23,15 @@ public class LineItem {
         return db.findProduct(productId);
     }
     
-    public final void addDataToLineItem(){
+    public final String getLineItemData(){
         String data = "";
-        
-    }
-    
-    public final void addLineItem(){
-        
+        data += product.getProductId()+ "   " + "\n";
+        data += product.getName() + "   " + "\n";
+        data += product.getRetailPrice() + "   " + "\n";
+        data += qty + "   " + "\n";
+        data += (product.getRetailPrice() * qty) + "   " + "\n";
+        data += product.getDiscount();
+        return data;
     }
 
     public final Product getProduct() {

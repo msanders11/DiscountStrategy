@@ -14,13 +14,13 @@ public class Receipt {
     private Customer customer;
     private DataAccessStrategy db;
     private String receiptId;
-    private LineItem[] lineItem;
-    private ReceiptOutputStrategy outputStrategy;
+    private LineItem[] lineItems;
+  
 
     Receipt(String customerId, DataAccessStrategy db) {
         customer = findCustomer(customerId, db);
 
-        lineItem = new LineItem[0];
+        lineItems = new LineItem[0];
     }
 
     private Customer findCustomer(String customerId, DataAccessStrategy db) {
@@ -32,22 +32,25 @@ public class Receipt {
     }
 
     public final void addLineItem(String productId, int qty) {
-        LineItem lineItem = new LineItem(productId, qty, db);
-        addToArray(lineItem);
+        LineItem lineItems = new LineItem(productId, qty, db);
+        addToArray(lineItems);
     }
 
-    private void addToArray(LineItem lineItem) {
+    private void addToArray(final LineItem lineItem) {
         // needs validation
-        LineItem[] tempItems = new LineItem[lineItem.length + 1];
-        System.arraycopy(lineItem, 0, tempItems, 0, lineItem.length());
-        tempItems[lineItem.length] = lineItem;
-        lineItem = tempItems;
+        LineItem[] tempItems = new LineItem[lineItems.length + 1];
+        System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
+        tempItems[lineItems.length] = lineItem;
+        lineItems = tempItems;
         tempItems = null;
     }
-
-    void outPutReceipt() {
-        String receiptData = "";
-        outputStrategy.outputReceipt(receiptData);
+    
+    public final String getReceiptData(){
+       String receiptData = "";
+       for(LineItem item : lineItems){
+           receiptData = item.getLineItemData() + "\n";
+       }
+        return receiptData;
     }
 
 }

@@ -15,6 +15,13 @@ public class Product {
     private double retailPrice;
     private DiscountStrategy discount;
 
+    public Product(String productId, String name, double retailPrice, DiscountStrategy discount) {
+        this.productId = productId;
+        this.name = name;
+        this.retailPrice = retailPrice;
+        this.discount = discount;
+    }
+
     public final String getName() {
         return name;
     }

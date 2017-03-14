@@ -11,9 +11,11 @@ package discountstrategy;
  */
 public class QuantityDiscount implements DiscountStrategy {
     private double quantityDiscountAmount;
+    private int qty;
 
-    public QuantityDiscount(double quantityDiscountAmount) {
+    public QuantityDiscount(double quantityDiscountAmount, int qty) {
         setQuantityDiscountAmount(quantityDiscountAmount);
+        setQty(qty);
     }
     
     @Override
@@ -27,6 +29,17 @@ public class QuantityDiscount implements DiscountStrategy {
 
     public final void setQuantityDiscountAmount(double quantityDiscountAmount) {
         this.quantityDiscountAmount = quantityDiscountAmount;
+    }
+
+    public final int getQty() {
+        return qty;
+    }
+
+    public final void setQty(int qty) {
+        if(qty <= 0){
+            throw new IllegalArgumentException("Enter a valid quantity");
+        } 
+        this.qty = qty;
     }
     
     
