@@ -11,6 +11,7 @@ public class StartUp {
     public static void main(String[] args) {
         DataAccessStrategy db = new InMemoryDataAccess();
         ReceiptOutputStrategy output = new GuiOutputStrategy();
+        ReceiptOutputStrategy output2 = new ConsoleOutputStrategy();
         //start sale
         PosTerminal pos = new PosTerminal(output);
         pos.startSale("100", db);
@@ -21,7 +22,7 @@ public class StartUp {
         //end sale
         pos.endSale();
         
-        pos.startSale(" ", db);
+        pos.startSale("", db);
         pos.addItemToSale("M101", 2);
         pos.addItemToSale("W456", 1);
         pos.endSale();

@@ -9,7 +9,6 @@ public class Receipt {
 
     private Customer customer;
     private DataAccessStrategy db;
-//    private String receiptId;
     private LineItem[] lineItems;
     private int receiptNumber = 0;
 
@@ -56,7 +55,7 @@ public class Receipt {
         receiptNumber++;
         String storeInfo = "Thank you for shopping at Kohl's!";
         String receiptData = storeInfo + "\n\n";
-        receiptData += "Sold to: " + ((customer.getName() == null) ? " " : customer.getName()) + "\n";
+        receiptData += "Sold to: " + ((customer == null) ? "" : customer.getName()) + "\n";
         receiptData += "Receipt Number: " + receiptNumber + "\n\n";
         receiptData += "ID      " + "Item               " + "Price  " + " Qty   " +
                 "Subtotal     " + "Discount" +"\n";
