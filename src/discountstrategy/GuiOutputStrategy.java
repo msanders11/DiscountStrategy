@@ -13,13 +13,8 @@ import javax.swing.JOptionPane;
  */
 public class GuiOutputStrategy implements ReceiptOutputStrategy {
 
-    public GuiOutputStrategy() {
-    }
-
     @Override
-    public void outputReceipt(String receiptData) {
+    public final void outputReceipt(String receiptData) {
         JOptionPane.showMessageDialog(null, receiptData);
     }
-
-    
 }

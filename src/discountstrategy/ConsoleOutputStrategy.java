@@ -11,12 +11,8 @@ package discountstrategy;
  */
 public class ConsoleOutputStrategy implements ReceiptOutputStrategy {
 
-    public ConsoleOutputStrategy() {
-    }
-
     @Override
-    public void outputReceipt(String receiptData) {
+    public final void outputReceipt(String receiptData) {
         System.out.println(receiptData);
     }
-    
 }

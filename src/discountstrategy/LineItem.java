@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package discountstrategy;
 
 /**
@@ -10,27 +5,33 @@ package discountstrategy;
  * @author Mike
  */
 public class LineItem {
+
     private Product product;
     private int qty;
-    
 
     public LineItem(String productId, int qty, DataAccessStrategy db) {
         product = findProduct(productId, db);
         setQty(qty);
     }
 
-    private Product findProduct(String productId, DataAccessStrategy db){
+    private Product findProduct(String productId, DataAccessStrategy db) {
+        if (productId == null || productId.length() == 0) {
+            throw new IllegalArgumentException("Invalid product ID.");
+        }
+        if (db == null) {
+            throw new IllegalArgumentException("No Data Access Strategy.");
+        }
         return db.findProduct(productId);
     }
-    
-    public final String getLineItemData(){
+
+    public final String getLineItemData() {
         String data = "";
-        data += product.getProductId()+ "   " + "\n";
-        data += product.getName() + "   " + "\n";
-        data += product.getRetailPrice() + "   " + "\n";
-        data += qty + "   " + "\n";
-        data += getSubtotal()+ "   " + "\n";
-        data += product.getDiscountStrategy().getDiscount(product.getRetailPrice(), qty);
+        data += product.getProductId() + "   ";
+        data += product.getName() + "   ";
+        data += product.getRetailPrice() + "   ";
+        data += qty + "      ";
+        data += getSubtotal() + "       ";
+        data += String.format("%,.2f",product.getDiscountStrategy().getDiscount(product.getRetailPrice(), qty));
         return data;
     }
 
@@ -39,6 +40,9 @@ public class LineItem {
     }
 
     public final void setProduct(Product product) {
+        if(product == null){
+            throw new IllegalArgumentException("No product entered.");
+        }
         this.product = product;
     }
 
@@ -47,12 +51,13 @@ public class LineItem {
     }
 
     public final void setQty(int qty) {
+        if(qty <= 0){
+            throw new IllegalArgumentException("Invalid quantity");
+        }
         this.qty = qty;
     }
-    
-    public final double getSubtotal(){
+
+    public final double getSubtotal() {
         return product.getRetailPrice() * qty;
     }
-    
-    
 }

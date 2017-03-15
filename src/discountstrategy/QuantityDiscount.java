@@ -11,6 +11,7 @@ package discountstrategy;
  */
 public class QuantityDiscount implements DiscountStrategy {
     private double quantityDiscountAmount;
+    private int minimumQuantity;
     private int qty;
 
     public QuantityDiscount(double quantityDiscountAmount, int qty) {
@@ -20,7 +21,11 @@ public class QuantityDiscount implements DiscountStrategy {
     
     @Override
     public final double getDiscount(Double retailPrice, int qty) {
-        return quantityDiscountAmount * qty;
+        if(qty >= minimumQuantity){
+            return (quantityDiscountAmount * retailPrice) * qty;
+        }
+        quantityDiscountAmount = 0;
+        return quantityDiscountAmount;
     }
 
     public final double getQuantityDiscountAmount() {

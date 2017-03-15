@@ -13,12 +13,12 @@ public class FlatRateDiscount implements DiscountStrategy {
     private double flatRateDiscount;
 
     public FlatRateDiscount(double flatRateDiscount) {
-        setFlatRateDiscount(flatRateDiscount);
+        this.flatRateDiscount = flatRateDiscount;
     }
     
     @Override
     public final double getDiscount(Double retailPrice, int qty) {
-        return flatRateDiscount;
+        return flatRateDiscount * qty;
     }
 
     public final double getFlatRateDiscount() {

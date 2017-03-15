@@ -15,11 +15,12 @@ class Customer {
 
     public Customer(String customerId, DataAccessStrategy db) {
         setCustomerId(customerId);
+        
     }
 
     public Customer(String customerId, String name) {
         this.customerId = customerId;
-        this.name = name;
+        setName(name);
     }
 
     public final String getCustomerId() {
