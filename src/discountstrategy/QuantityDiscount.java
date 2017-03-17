@@ -11,7 +11,7 @@ package discountstrategy;
  */
 public class QuantityDiscount implements DiscountStrategy {
     private double quantityDiscountAmount;
-    private int minimumQuantity;
+    private final int minimumQuantity = 5;
     private int qty;
 
     public QuantityDiscount(final double quantityDiscountAmount, final int qty) {

@@ -13,6 +13,12 @@ public class NoDiscount implements DiscountStrategy {
 
     @Override
     public final double getDiscount(final Double retailPrice, final int qty) {
+        if(retailPrice == null || retailPrice <=0){
+            throw new IllegalArgumentException("Invalid retail price");
+        }
+        if(qty <= 0){
+            throw new IllegalArgumentException("Invalid quantity");
+        }
         return 0;
     }
     

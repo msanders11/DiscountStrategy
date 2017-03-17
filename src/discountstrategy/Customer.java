@@ -36,6 +36,9 @@ class Customer {
     }
 
     public final void setName(final String name) {
+        if(name == null || name.length() == 0 || name.length() < 2){
+            throw new IllegalArgumentException("Invalid name");
+        }
         this.name = name;
     }
     
