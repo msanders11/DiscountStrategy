@@ -1,7 +1,4 @@
-
 package discountstrategy;
-
-import static discountstrategy.Receipt.receiptNumber;
 
 /**
  *
