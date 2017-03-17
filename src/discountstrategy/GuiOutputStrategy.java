@@ -14,7 +14,10 @@ import javax.swing.JOptionPane;
 public class GuiOutputStrategy implements ReceiptOutputStrategy {
 
     @Override
-    public final void outputReceipt(String receiptData) {
+    public final void outputReceipt(final String receiptData) {
+        if(receiptData == null || receiptData.length() == 0){
+            throw new IllegalArgumentException("Invalid receipt data.");
+        }
         JOptionPane.showMessageDialog(null, receiptData);
     }
 }

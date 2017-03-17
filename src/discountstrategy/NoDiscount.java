@@ -12,7 +12,7 @@ package discountstrategy;
 public class NoDiscount implements DiscountStrategy {
 
     @Override
-    public final double getDiscount(Double retailPrice, int qty) {
+    public final double getDiscount(final Double retailPrice, final int qty) {
         return 0;
     }
     

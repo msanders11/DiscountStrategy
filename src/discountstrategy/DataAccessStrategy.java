@@ -7,8 +7,8 @@ package discountstrategy;
  */
 public interface DataAccessStrategy {
 
-    public abstract Customer findCustomer(String customerId);
+    public abstract Customer findCustomer(final String customerId);
     
-    public abstract Product findProduct(String productId);
+    public abstract Product findProduct(final String productId);
     
 }

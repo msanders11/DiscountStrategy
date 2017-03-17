@@ -15,18 +15,21 @@ public class Product {
     private double retailPrice;
     private DiscountStrategy discountStrategy;
 
-    public Product(String productId, String name, double retailPrice, DiscountStrategy discount) {
-        this.productId = productId;
-        this.name = name;
-        this.retailPrice = retailPrice;
-        this.discountStrategy = discount;
+    public Product(final String productId, final String name, final double retailPrice, final DiscountStrategy discount) {
+        setProductId(productId);
+        setName(name);
+        setRetailPrice(retailPrice);
+        setDiscountStrategy(discount);
     }
 
     public final String getName() {
         return name;
     }
 
-    public final void setName(String name) {
+    public final void setName(final String name) {
+        if(name == null || name.length() == 0){
+            throw new IllegalArgumentException("Invalid, no product name provided.");
+        }
         this.name = name;
     }
 
@@ -34,7 +37,10 @@ public class Product {
         return productId;
     }
 
-    public final void setProductId(String productId) {
+    public final void setProductId(final String productId) {
+        if(productId == null || productId.length() == 0 || productId.length() > 4){
+            throw new IllegalArgumentException("Invalid or incorrect producdId ");
+        }
         this.productId = productId;
     }
 
@@ -42,7 +48,10 @@ public class Product {
         return retailPrice;
     }
 
-    public final void setRetailPrice(double retailPrice) {
+    public final void setRetailPrice(final double retailPrice) {
+        if(retailPrice < 0){
+            throw new IllegalArgumentException("Invalid retail price.");
+        }
         this.retailPrice = retailPrice;
     }
 
@@ -50,7 +59,10 @@ public class Product {
         return discountStrategy;
     }
 
-    public final void setDiscountStrategy(DiscountStrategy discountStrategy) {
+    public final void setDiscountStrategy(final DiscountStrategy discountStrategy) {
+        if(discountStrategy == null){
+            throw new IllegalArgumentException("Invalid discount strategy");
+        }
         this.discountStrategy = discountStrategy;
     } 
     

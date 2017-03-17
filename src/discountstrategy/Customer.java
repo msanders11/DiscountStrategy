@@ -13,13 +13,13 @@ class Customer {
     private String customerId;
     private String name;
 
-    public Customer(String customerId, DataAccessStrategy db) {
+    public Customer(final String customerId, final DataAccessStrategy db) {
         setCustomerId(customerId);
         
     }
 
-    public Customer(String customerId, String name) {
-        this.customerId = customerId;
+    public Customer(final String customerId, final String name) {
+        setCustomerId(customerId);
         setName(name);
     }
 
@@ -27,7 +27,7 @@ class Customer {
         return customerId;
     }
 
-    public final void setCustomerId(String customerId) {
+    public final void setCustomerId(final String customerId) {
         this.customerId = customerId;
     }
 
@@ -35,7 +35,7 @@ class Customer {
         return name;
     }
 
-    public final void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
     

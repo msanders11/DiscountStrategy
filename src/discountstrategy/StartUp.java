@@ -13,12 +13,12 @@ public class StartUp {
         ReceiptOutputStrategy output = new GuiOutputStrategy();
         ReceiptOutputStrategy output2 = new ConsoleOutputStrategy();
         //start sale
-        PosTerminal pos = new PosTerminal(output);
+        PosTerminal pos = new PosTerminal(output, output2);
         pos.startSale("100", db);
         //add product
         pos.addItemToSale("S206", 2);
         //add product
-        pos.addItemToSale("A012", 1);
+        pos.addItemToSale("A012", 2);
         //end sale
         pos.endSale();
         

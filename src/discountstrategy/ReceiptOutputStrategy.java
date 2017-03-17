@@ -7,6 +7,6 @@ package discountstrategy;
  */
 public interface ReceiptOutputStrategy {
 
-    public abstract void outputReceipt(String receiptData);
+    public abstract void outputReceipt(final String receiptData);
 
 }

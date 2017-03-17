@@ -12,12 +12,15 @@ package discountstrategy;
 public class FlatRateDiscount implements DiscountStrategy {
     private double flatRateDiscount;
 
-    public FlatRateDiscount(double flatRateDiscount) {
-        this.flatRateDiscount = flatRateDiscount;
+    public FlatRateDiscount(final double flatRateDiscount) {
+        setFlatRateDiscount(flatRateDiscount);
     }
     
     @Override
-    public final double getDiscount(Double retailPrice, int qty) {
+    public final double getDiscount(final Double retailPrice, final int qty) {
+        if(retailPrice == null || retailPrice < 0 || qty < 0){
+            throw new IllegalArgumentException("Invalid discount or qty passed to getDiscount");
+        }
         return flatRateDiscount * qty;
     }
 
@@ -25,7 +28,10 @@ public class FlatRateDiscount implements DiscountStrategy {
         return flatRateDiscount;
     }
 
-    public final void setFlatRateDiscount(double flatRateDiscount) {
+    public final void setFlatRateDiscount(final double flatRateDiscount) {
+        if(flatRateDiscount == 0){
+            throw new IllegalArgumentException("Invalid flat rate discount");
+        }
         this.flatRateDiscount = flatRateDiscount;
     }
     

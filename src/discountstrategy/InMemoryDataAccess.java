@@ -22,7 +22,7 @@ public class InMemoryDataAccess implements DataAccessStrategy {
     
     
     @Override
-    public final Customer findCustomer(String customerId) {
+    public final Customer findCustomer(final String customerId) {
         if(customerId == null || customerId.length() == 0){
             return null;
         }
@@ -37,7 +37,7 @@ public class InMemoryDataAccess implements DataAccessStrategy {
     }
 
     @Override
-    public final Product findProduct(String productId) {
+    public final Product findProduct(final String productId) {
         if(productId == null || productId.length() == 0){
             System.out.println("Sorry, cannot find product in the database");
             return null;

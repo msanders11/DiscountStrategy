@@ -14,13 +14,13 @@ public class QuantityDiscount implements DiscountStrategy {
     private int minimumQuantity;
     private int qty;
 
-    public QuantityDiscount(double quantityDiscountAmount, int qty) {
+    public QuantityDiscount(final double quantityDiscountAmount, final int qty) {
         setQuantityDiscountAmount(quantityDiscountAmount);
         setQty(qty);
     }
     
     @Override
-    public final double getDiscount(Double retailPrice, int qty) {
+    public final double getDiscount(final Double retailPrice, final int qty) {
         if(qty >= minimumQuantity){
             return (quantityDiscountAmount * retailPrice) * qty;
         }
@@ -32,7 +32,10 @@ public class QuantityDiscount implements DiscountStrategy {
         return quantityDiscountAmount;
     }
 
-    public final void setQuantityDiscountAmount(double quantityDiscountAmount) {
+    public final void setQuantityDiscountAmount(final double quantityDiscountAmount) {
+        if(quantityDiscountAmount <= 0 || quantityDiscountAmount >= 1){
+            throw new IllegalArgumentException("Invalid discount amount");
+        }
         this.quantityDiscountAmount = quantityDiscountAmount;
     }
 
@@ -40,12 +43,10 @@ public class QuantityDiscount implements DiscountStrategy {
         return qty;
     }
 
-    public final void setQty(int qty) {
+    public final void setQty(final int qty) {
         if(qty <= 0){
             throw new IllegalArgumentException("Enter a valid quantity");
         } 
         this.qty = qty;
-    }
-    
-    
+    }    
 }

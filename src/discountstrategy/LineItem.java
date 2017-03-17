@@ -5,16 +5,15 @@ package discountstrategy;
  * @author Mike
  */
 public class LineItem {
-
     private Product product;
     private int qty;
 
-    public LineItem(String productId, int qty, DataAccessStrategy db) {
+    public LineItem(final String productId, final int qty, final DataAccessStrategy db) {
         product = findProduct(productId, db);
         setQty(qty);
     }
 
-    private Product findProduct(String productId, DataAccessStrategy db) {
+    private final Product findProduct(final String productId, final DataAccessStrategy db) {
         if (productId == null || productId.length() == 0) {
             throw new IllegalArgumentException("Invalid product ID.");
         }
@@ -39,7 +38,7 @@ public class LineItem {
         return product;
     }
 
-    public final void setProduct(Product product) {
+    public final void setProduct(final Product product) {
         if(product == null){
             throw new IllegalArgumentException("No product entered.");
         }
@@ -50,7 +49,7 @@ public class LineItem {
         return qty;
     }
 
-    public final void setQty(int qty) {
+    public final void setQty(final int qty) {
         if(qty <= 0){
             throw new IllegalArgumentException("Invalid quantity");
         }

@@ -11,6 +11,6 @@ package discountstrategy;
  */
 public interface DiscountStrategy {
     
-    public abstract double getDiscount(Double retailPrice, int qty);
+    public abstract double getDiscount(final Double retailPrice, final int qty);
     
 }

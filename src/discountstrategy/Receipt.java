@@ -10,24 +10,25 @@ public class Receipt {
     private Customer customer;
     private DataAccessStrategy db;
     private LineItem[] lineItems;
-    private int receiptNumber = 0;
+    public static int receiptNumber = 0;
 
-    Receipt(String customerId, DataAccessStrategy db) {
+    Receipt(final String customerId, final DataAccessStrategy db) {
         this.db = db;
         customer = findCustomer(customerId);
 
         lineItems = new LineItem[0];
     }
 
-    private Customer findCustomer(String customerId) {
+    private final Customer findCustomer(final String customerId) {
         return db.findCustomer(customerId);
     }
     
-    public final void startSale(String customerId, DataAccessStrategy db) {
+    public final void startSale(final String customerId, final DataAccessStrategy db) {
+        receiptNumber++;
         db.findCustomer(customerId);
     }
 
-    public final void addLineItem(String productId, int qty) {
+    public final void addLineItem(final String productId, int qty) {
         if(productId == null || productId.length() == 0){
             throw new IllegalArgumentException("Invalid product ID.");
         } 
@@ -52,25 +53,24 @@ public class Receipt {
     public final String getReceiptData() {
         Double netTotal = 0.0;
         Double totalDiscount = 0.0;
-        receiptNumber++;
+        
         String storeInfo = "Thank you for shopping at Kohl's!";
         String receiptData = storeInfo + "\n\n";
         receiptData += "Sold to: " + ((customer == null) ? "" : customer.getName()) + "\n";
         receiptData += "Receipt Number: " + receiptNumber + "\n\n";
-        receiptData += "ID      " + "Item               " + "Price  " + " Qty   " +
+        receiptData += "ID      " + "Item              " + "Price  " + " Qty        " +
                 "Subtotal     " + "Discount" +"\n";
-        receiptData += "-----------------------------------------------------------" + "\n";
+        receiptData += "---------------------------------------------------------------------" + "\n";
         for (LineItem item : lineItems) {
             receiptData += item.getLineItemData() + "\n";
             netTotal += item.getSubtotal();
             totalDiscount += item.getProduct().getDiscountStrategy().getDiscount(item.getProduct().getRetailPrice(), item.getQty());
         }
         receiptData += "                                      ---------------" + "\n";
-        receiptData += "                                      Net Total:     " + netTotal +"\n";
-        receiptData += "                                      Amount Saved:  " + String.format("%,.2f", totalDiscount) + "\n";
+        receiptData += "                                      Net Total:     " + String.format("$%,.2f", netTotal) +"\n";
+        receiptData += "                                      Amount Saved:  " + String.format("$%,.2f", totalDiscount) + "\n";
         receiptData += "                                      --------------------" + "\n";
-        receiptData += "                                      Total Due: " + (netTotal - totalDiscount);
-        
+        receiptData += "                                      Total Due: " + String.format("$%,.2f",(netTotal - totalDiscount));
         return receiptData;
     }
 
