@@ -32,7 +32,7 @@ public class PercentageDiscount implements DiscountStrategy{
     }
 
     public final void setDiscountPercent(final double discountPercent) {
-        if(discountPercent <= 0 || discountPercent >= 1){
+        if(discountPercent < 0 || discountPercent >= 1){
             throw new IllegalArgumentException("Invalid discount percent");
         }
         this.discountPercent = discountPercent;

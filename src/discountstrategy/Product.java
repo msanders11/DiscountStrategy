@@ -44,7 +44,7 @@ public class Product {
     }
 
     public final void setRetailPrice(final double retailPrice) {
-        if(retailPrice < 0){
+        if(retailPrice <= 0){
             throw new IllegalArgumentException("Invalid retail price.");
         }
         this.retailPrice = retailPrice;

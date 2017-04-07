@@ -5,8 +5,6 @@
  */
 package discountstrategy;
 
-import static discountstrategy.Receipt.receiptNumber;
-
 /**
  *
  * @author msanders11
